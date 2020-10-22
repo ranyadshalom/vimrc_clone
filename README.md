@@ -16,7 +16,7 @@ I would, of course, recommend using the awesome version.
 ### Install for your own user only
 The awesome version includes a lot of great plugins, configurations and color schemes that make Vim a lot better. To install it simply do following from your terminal:
 
-	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+	git clone --depth=1 https://github.com/ranyadshalom/vimrc_clone.git ~/.vim_runtime
     // ranys edit
     git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
     git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/dist/start/vim-airline
