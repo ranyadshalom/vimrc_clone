@@ -15,6 +15,11 @@ set shiftwidth=4
 set expandtab
 
 
+" j, k Store relative line number jumps in the jumplist.
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
+
 " Gruvbox
 autocmd vimenter * colorscheme gruvbox
 colorscheme gruvbox
