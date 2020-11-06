@@ -1,0 +1,12 @@
+set hlsearch
+set surround
+nnoremap <esc><esc> :nohls<cr>
+set clipboard=unnamedplus
+set number relativenumber
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+let g:highlightedyank_highlight_duration = "1000"
+set highlightedyank
+
+" paste over visual selction, but don't yank removed text
+xnoremap p "_dP
+
