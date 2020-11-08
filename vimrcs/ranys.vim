@@ -225,9 +225,9 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 " FZF key bindings
-"let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'GFiles'
-nnoremap <C-p> :GFiles<cr>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'GFiles'
+nnoremap <C-f> :FZF<cr>
 nnoremap <leader>g :Ag<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>cc :History:<cr>
