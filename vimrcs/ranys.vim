@@ -37,9 +37,6 @@ endtry
 
 let g:airline_powerline_fonts = 1
 
-" paste over visual selction, but don't yank removed text
-xnoremap p "_dP
-
 " FZF.vim https://github.com/junegunn/fzf/blob/master/README-VIM.md
 " TODO add FZF to my vimrc repo
 set rtp+=~/.fzf
@@ -56,13 +53,6 @@ call plug#begin()
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim'
 call plug#end()
-
-" FZF key bindings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'FZF'
-nnoremap <leader>g :Ag<cr>
-nnoremap <leader>. :Tags<cr>
-nnoremap <leader>cc :History:<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""" CocVim config
@@ -232,4 +222,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 """"""""""""""""""
+
+
+" FZF key bindings
+"let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'GFiles'
+nnoremap <C-p> :GFiles<cr>
+nnoremap <leader>g :Ag<cr>
+nnoremap <leader>. :Tags<cr>
+nnoremap <leader>cc :History:<cr>
+
+" paste over visual selction, but don't yank removed text
+xnoremap p "_dP
 
