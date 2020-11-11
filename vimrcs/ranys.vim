@@ -224,14 +224,14 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 """"""""""""""""""
 
 
-" FZF key bindings
+" FZF settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'GFiles'
 nnoremap <C-f> :FZF<cr>
 nnoremap <leader>g :Ag<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>cc :History:<cr>
-
+let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
 " paste over visual selction, but don't yank removed text
 xnoremap p "_dP
 
