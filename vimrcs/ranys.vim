@@ -51,7 +51,6 @@ endif
 " vim-plug plugins
 call plug#begin()
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim'
 call plug#end()
 
 
