@@ -30,4 +30,21 @@ npm install coc-snippets --global-style --ignore-scripts --no-bin-links --no-pac
 npm install coc-tsserver --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-java --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+npm install coc-sh --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-markdownlint --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+npm install coc-vimlsp --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+
+# update settings to what I like
+echo -n "Copy @ranys defult settings to ~/.vim/coc-settings.json [y/n]"
+read answer
+if [ "$answer" != "${answer#[Yy]}"  ] ;then
+        echo '{
+            "python.jediEnabled": false,
+            "python.linting.flake8Enabled": true,
+            "python.linting.enabled": true,
+            "python.linting.pylintEnabled": true,
+            "python.analysis.memory.keepLibraryAst": true
+        }' > ~/.vim/coc-settings.json
+    else
+        echo "Did not copy default settings."
+fi
