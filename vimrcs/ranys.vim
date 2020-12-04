@@ -1,4 +1,4 @@
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 set wrap linebreak nolist
 set number relativenumber
 set autoindent
@@ -237,7 +237,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " FZF settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'GFiles'
-nnoremap <C-f> :FZF<cr>
+" nnoremap <C-f> :FZF<cr>
 nnoremap <leader>g :Ag<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>cc :History:<cr>
