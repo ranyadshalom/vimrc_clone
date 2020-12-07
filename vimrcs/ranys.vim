@@ -64,8 +64,19 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+    \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 
-"""""""""""""""""""""""""""""""""""""""""""" CocVim config
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+
+"""""""""""""""""""""""""""""""""""""""""" CocVim config
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -238,7 +249,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'GFiles'
 " nnoremap <C-f> :FZF<cr>
-nnoremap <leader>g :Ag<cr>
+nnoremap <leader>g :Ag!<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>cc :History:<cr>
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
