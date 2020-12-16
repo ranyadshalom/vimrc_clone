@@ -25,6 +25,7 @@ autocmd vimenter * colorscheme gruvbox
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 
+
 nnoremap <esc><esc> :nohls<cr>
 
 " VimDiff word wrap
@@ -246,6 +247,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 " FZF settings
+set rtp+=/usr/local/opt/fzf "path for Brew installed fzf
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'GFiles'
 " nnoremap <C-f> :FZF<cr>
@@ -253,6 +255,11 @@ nnoremap <leader>g :Ag!<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>cc :History:<cr>
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
+" Don't show preview window in GitFiles
+command! -bang -nargs=? -complete=dir GFiles  call fzf#vim#gitfiles(<q-args>, {'options': ['--layout=reverse', '--info=inline']}, <bang>0)
+
+
+
 " paste over visual selction, but don't yank removed text
 xnoremap p "_dP
 
