@@ -38,4 +38,12 @@ if [ "$answer" != "${answer#[Yy]}"  ] ;then
         echo "Skipped tmux conf."
 fi
 
+echo -n "Override zshell config (~/.zshrc) for the one in here?"
+read answer
+if [ "$answer" != "${answer#[Yy]}"  ] ;then
+        ln -s ~/.vim_runtime/non_vim_config/.zshrc ~/.zshrc
+    else
+        echo "Skipped zshrc override"
+fi
+
 echo "Installed the Ultimate Vim "ranys adjusted" configuration successfully! Enjoy :-)"
