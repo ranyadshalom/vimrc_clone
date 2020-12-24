@@ -1,3 +1,5 @@
+let g:notes_path = "~/Documents/Notes"
+
 set clipboard^=unnamed,unnamedplus
 set wrap linebreak nolist
 set number relativenumber
@@ -37,6 +39,14 @@ catch
 endtry
 
 let g:airline_powerline_fonts = 1
+
+" note taking
+function Note()
+    let time = strftime("%Y-%m-%d")
+    return ":tabnew " . g:notes_path . "/" . time . " "
+endfunction
+nnoremap <expr> <leader>n Note()
+
 
 " FZF.vim https://github.com/junegunn/fzf/blob/master/README-VIM.md
 " TODO add FZF to my vimrc repo

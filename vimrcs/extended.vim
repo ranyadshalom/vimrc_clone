@@ -139,7 +139,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 "
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
+" map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
 " Make sure that enter is never overriden in the quickfix window
