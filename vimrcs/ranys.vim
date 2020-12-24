@@ -47,6 +47,7 @@ function Note()
 endfunction
 nnoremap <expr> <leader>n Note()
 
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " FZF.vim https://github.com/junegunn/fzf/blob/master/README-VIM.md
 " TODO add FZF to my vimrc repo
@@ -263,6 +264,7 @@ let g:ctrlp_cmd = 'GFiles'
 " nnoremap <C-f> :FZF<cr>
 nnoremap <leader>g :Ag!<cr>
 nnoremap <leader>. :Tags<cr>
+nnoremap <leader>p :FZF<cr>
 nnoremap <leader>cc :History:<cr>
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
 " Don't show preview window in GitFiles
