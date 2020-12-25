@@ -27,7 +27,7 @@ autocmd vimenter * colorscheme gruvbox
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 
-
+" Search highlight cleanup
 nnoremap <esc><esc> :nohls<cr>
 
 " VimDiff word wrap
@@ -48,6 +48,11 @@ endfunction
 nnoremap <expr> <leader>n Note()
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
+
+" spell checking
+set spell
+
+nnoremap <F5> :UndotreeToggle<CR>
 
 " FZF.vim https://github.com/junegunn/fzf/blob/master/README-VIM.md
 " TODO add FZF to my vimrc repo
