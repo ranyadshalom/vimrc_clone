@@ -4,6 +4,7 @@ set clipboard^=unnamed,unnamedplus
 set wrap linebreak nolist
 set number relativenumber
 set autoindent
+set cursorline
 " set paste  " creates issues with autocomplete
 set scrolloff=0
 
@@ -50,7 +51,7 @@ nnoremap <expr> <leader>n Note()
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " spell checking
-set spell
+" set spell
 
 nnoremap <F5> :UndotreeToggle<CR>
 
@@ -252,7 +253,7 @@ nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList sources<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -267,7 +268,7 @@ set rtp+=/usr/local/opt/fzf "path for Brew installed fzf
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'GFiles'
 " nnoremap <C-f> :FZF<cr>
-nnoremap <leader>g :Ag!<cr>
+nnoremap <leader>g :Rg!<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>p :FZF<cr>
 nnoremap <leader>cc :History:<cr>
