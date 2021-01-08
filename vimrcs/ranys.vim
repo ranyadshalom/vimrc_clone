@@ -34,6 +34,7 @@ nnoremap <esc><esc> :nohls<cr>
 " VimDiff word wrap
 au VimEnter * if &diff | execute 'windo set wrap' | endif
 
+
 try
 source ~/.vim_runtime/my_configs.vim
 catch
@@ -69,6 +70,7 @@ endif
 " vim-plug plugins
 call plug#begin()
 Plug 'junegunn/fzf.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
