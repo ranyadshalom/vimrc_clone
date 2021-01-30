@@ -22,6 +22,30 @@ set expandtab
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
+" Yank from remote host into local clipboard
+function! OscCopy()
+  let encodedText=@"
+  let encodedText=substitute(encodedText, '\', '\\\\', "g")
+  let encodedText=substitute(encodedText, "'", "'\\\\''", "g")
+  let executeCmd="echo -n '".encodedText."' | base64 | tr -d '\\n'"
+  let encodedText=system(executeCmd)
+  if $TMUX != ""
+    "tmux
+    let executeCmd='echo -en "\x1bPtmux;\x1b\x1b]52;;'.encodedText.'\x1b\x1b\\\\\x1b\\" > /dev/tty'
+  else
+    let executeCmd='echo -en "\x1b]52;;'.encodedText.'\x1b\\" > /dev/tty'
+  endif
+  call system(executeCmd)
+  redraw!
+endfunction
+command! OscCopy :call OscCopy()
+
+" always yank to local system clipboard each yanking
+augroup wayland_clipboard
+  au!
+  au TextYankPost * call OscCopy()
+augroup END
+
 
 " Gruvbox
 autocmd vimenter * colorscheme gruvbox
