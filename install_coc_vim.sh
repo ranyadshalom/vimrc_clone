@@ -29,9 +29,8 @@ fi
 npm install coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-tsserver --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-java --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
-npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+npm install coc-pyright --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-sh --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
-npm install coc-markdownlint --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 npm install coc-vimlsp --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
 # update settings to what I like
@@ -43,6 +42,8 @@ if [ "$answer" != "${answer#[Yy]}"  ] ;then
             "python.linting.flake8Enabled": true,
             "python.linting.enabled": true,
             "python.linting.pylintEnabled": true,
+            "python.linting.pep8Enabled": true,
+            "python.linting.pep8Args": ["--max-line-length=120"],
             "python.analysis.memory.keepLibraryAst": true
         }' > ~/.vim/coc-settings.json
     else
