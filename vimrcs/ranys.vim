@@ -58,6 +58,21 @@ nnoremap <esc><esc> :nohls<cr>
 " VimDiff word wrap
 au VimEnter * if &diff | execute 'windo set wrap' | endif
 
+" NERDTree sort by timestamp
+let s:nerdSortEnabled = 0
+
+function! ToggleSortNERDTreeTimestamp()
+    if s:nerdSortEnabled
+        let g:NERDTreeSortOrder=['\/$', '*', '\.swp$', '\.bak$', '\~$']
+        let s:nerdSortEnabled = 0
+        return ":NERDTreeRefreshRoot\<CR>"
+    else
+        let g:NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]']
+        let s:nerdSortEnabled = 1
+        return ":NERDTreeRefreshRoot\<CR>"
+    endif
+endfunction
+nnoremap <expr> <leader>ns ToggleSortNERDTreeTimestamp()
 
 try
 source ~/.vim_runtime/my_configs.vim
