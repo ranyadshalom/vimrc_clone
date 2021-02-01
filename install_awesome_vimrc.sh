@@ -21,6 +21,12 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry' > ~/.vimrc
 
+if [ ! -f ~/.config/nvim/init.vim ]; then
+    echo "Writing ~/.config/nvim/init.vim to make VIM config available for neovim"
+    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
+    let &packpath=&runtimepath
+    source ~/.vimrc" > ~/.config/nvim/init.vim
+fi
 
 echo -n "Install coc-vim along with extensions? (for VIM autocompletion)"
 read answer
