@@ -23,6 +23,7 @@ endtry' > ~/.vimrc
 
 if [ ! -f ~/.config/nvim/init.vim ]; then
     echo "Writing ~/.config/nvim/init.vim to make VIM config available for neovim"
+    mkdir ~/.config/nvim
     echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
     let &packpath=&runtimepath
     source ~/.vimrc" > ~/.config/nvim/init.vim
