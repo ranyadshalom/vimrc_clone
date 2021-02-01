@@ -1,6 +1,6 @@
 let g:notes_path = "~/Documents/Notes"
 
-set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamed,unnamedplus
 set wrap linebreak nolist
 set number relativenumber
 set autoindent
@@ -40,12 +40,16 @@ function! OscCopy()
 endfunction
 command! OscCopy :call OscCopy()
 
-" always yank to local system clipboard each yanking
-augroup wayland_clipboard
-  au!
-  au TextYankPost * call OscCopy()
-augroup END
 
+" always yank to local system clipboard each yanking
+if has('nvim')
+  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg + | endif
+else
+  augroup wayland_clipboard
+    au!
+    au TextYankPost * call OscCopy()
+  augroup END
+endif
 
 " Gruvbox
 autocmd vimenter * colorscheme gruvbox
