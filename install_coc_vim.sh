@@ -44,7 +44,9 @@ if [ "$answer" != "${answer#[Yy]}"  ] ;then
             "python.linting.pylintEnabled": true,
             "python.linting.pep8Enabled": true,
             "python.linting.pep8Args": ["--max-line-length=120"],
-            "python.analysis.memory.keepLibraryAst": true
+            "python.analysis.memory.keepLibraryAst": true,
+            "coc.source.around.enable": false,
+            "coc.source.buffer.enable": false
         }' > ~/.vim/coc-settings.json
     else
         echo "Did not copy default settings."
