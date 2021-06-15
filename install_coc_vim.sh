@@ -40,15 +40,25 @@ if [ "$answer" != "${answer#[Yy]}"  ] ;then
         echo '{
             "python.jediEnabled": false,
             "python.linting.flake8Enabled": true,
+            "python.linting.pep8Args": ["--max-line-length=140"],
+            "python.linting.flake8Args": ["--max-line-length=140"],
+            "python.linting.flake8Path": "flake8",
+            "python.formatting.autopep8Path": "autopep8",
             "python.linting.enabled": true,
             "python.linting.pylintEnabled": true,
-            "python.linting.pep8Enabled": true,
-            "python.linting.pep8Args": ["--max-line-length=120"],
             "python.analysis.memory.keepLibraryAst": true,
-			"coc.source.around.enable": false,
-			"coc.source.buffer.enable": false,
-			"java.jdt.ls.vmargs": "-noverify -Xmx4G -XX:+UseG1GC -XX:+UseStringDeduplication",
-			"java.completion.maxResults": 50
+            "java.home": "/usr/lib/jvm/java-11-amazon-corretto.x86_64",
+            "solargraph.diagnostics": false,
+            "solargraph.autoformat": true,
+            "solargraph.formatting": true,
+            "solargraph.hover": true,
+            "snippets.snipmate.enable": false,
+            "snippets.ultisnips.enable": false,
+            "coc.source.around.enable": false,
+            "coc.source.buffer.enable": false,
+            "java.jdt.ls.vmargs": "-noverify -Xmx4G -XX:+UseG1GC -XX:+UseStringDeduplication",
+            "java.completion.maxResults": 50,
+            "java.foldingRange.enabled": true
         }' > ~/.vim/coc-settings.json
     else
         echo "Did not copy default settings."

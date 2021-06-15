@@ -316,6 +316,7 @@ let g:ctrlp_cmd = 'GFiles'
 nnoremap <leader>g :Rg!<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>p :FZF<cr>
+nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>cc :History:<cr>
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
 " Don't show preview window in GitFiles
