@@ -92,7 +92,12 @@ function Note()
 endfunction
 nnoremap <expr> <leader>n Note()
 
-let g:auto_save = 1  " enable AutoSave on Vim startup
+" enable AutoSave on Vim startup
+let g:auto_save = 1
+
+" Highlight tabs as errors.
+" https://vi.stackexchange.com/a/9353/3168
+match Error /\t/
 
 " spell checking
 " set spell
