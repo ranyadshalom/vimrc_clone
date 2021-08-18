@@ -108,6 +108,17 @@ nnoremap <F5> :UndotreeToggle<CR>
 " TODO add FZF to my vimrc repo
 set rtp+=~/.fzf
 
+" make test commands execute using AsyncRun
+let test#strategy = "asyncrun"
+" AsyncRun (asyncrun) ---------------------------------------------------- {{{ "
+let g:asyncrun_open = 20     " --> for the height of the quickfix window "
+let g:asyncrun_status = ''   " --> to support integration with vim-airline "
+" ------------------------------------------------------------------------ }}} "
+
+" Tests mappings
+nnoremap <leader>s :TestNearest<CR>
+nnoremap <leader>t :TestFile<CR>
+
 " vim-plug auto install
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -119,6 +130,8 @@ endif
 call plug#begin()
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'puremourning/vimspector'
+Plug 'vim-test/vim-test'
 call plug#end()
 
 "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
