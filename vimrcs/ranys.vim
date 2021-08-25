@@ -61,7 +61,8 @@ nnoremap <esc><esc> :nohls<cr>
 
 " VimDiff word wrap
 au VimEnter * if &diff | execute 'windo set wrap' | endif
-
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " NERDTree sort by timestamp
 let s:nerdSortEnabled = 0
 
@@ -119,6 +120,9 @@ let g:asyncrun_status = ''   " --> to support integration with vim-airline "
 nnoremap <leader>s :TestNearest<CR>
 nnoremap <leader>t :TestFile<CR>
 
+" Build mappings
+nnoremap <leader>bb :AsyncRun brazil-build release<CR>
+
 " vim-plug auto install
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -130,7 +134,6 @@ endif
 call plug#begin()
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'puremourning/vimspector'
 Plug 'vim-test/vim-test'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
