@@ -1,7 +1,7 @@
 ![VIM](https://dnp4pehkvoo6n.cloudfront.net/43c5af597bd5c1a64eb1829f011c208f/as/Ultimate%20Vimrc.svg)
 
 # Ranys Ultimate Vimrc
-This is my fork of Amir Salihefendic's Ultimate Vimrc. Note that it is constantly changing as my workflow evolves, and contains settings for TMUX and zshell as well. You may find it useful but note that it is wasn't designed with an outside consumer. It mostly works our of the box, but for some functionality you might need to install fzf, ag, rg. VIM 8+ is required, but a more recent version of VIM is recommended. Also **backup settings you don't want overridden before installtion.**
+This is my fork of Amir Salihefendic's Ultimate Vimrc. Note that it is constantly changing as my workflow evolves, and contains settings for TMUX and zshell as well. You may find it useful but note that it is wasn't designed with an outside consumer in mind. It mostly works out of the box, but for some functionality you might need to install fzf, ag, rg. Neovim is required, but you might get some of the functionality with VIM as well. Also **backup settings you don't want overridden before installtion.**
 
 # Original README
 
