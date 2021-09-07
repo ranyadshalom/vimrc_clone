@@ -120,8 +120,13 @@ let g:asyncrun_status = ''   " --> to support integration with vim-airline "
 nnoremap <leader>s :TestNearest<CR>
 nnoremap <leader>t :TestFile<CR>
 
-" Build mappings
+" Git mappings
+nnoremap <leader>gl :GV --all<cr>
+nnoremap <leader>gs :Git<cr>
+
+" Build/ship mappings
 nnoremap <leader>bb :AsyncRun brazil-build release<CR>
+nnoremap <leader>cr :AsyncRun cr<cr>
 
 " vim-plug auto install
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -320,7 +325,7 @@ nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList sources<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
