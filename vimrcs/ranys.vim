@@ -120,9 +120,10 @@ let g:asyncrun_status = ''   " --> to support integration with vim-airline "
 nnoremap <leader>s :TestNearest<CR>
 nnoremap <leader>t :TestFile<CR>
 
-" Git mappings
+" Git mappings & settings
 nnoremap <leader>gl :GV --all<cr>
 nnoremap <leader>gs :Git<cr>
+set diffopt+=vertical
 
 " Build/ship mappings
 nnoremap <leader>bb :AsyncRun brazil-build release<CR>
