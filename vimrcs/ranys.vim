@@ -98,7 +98,9 @@ let g:auto_save = 1
 
 " Highlight tabs as errors.
 " https://vi.stackexchange.com/a/9353/3168
-match Error /\t/
+" match Error /\t/
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
 
 " spell checking
 " set spell
@@ -142,6 +144,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-test/vim-test'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
@@ -180,8 +183,8 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'   " enable fzf history
 " Don't show preview window in GitFiles
 command! -bang -nargs=? -complete=dir GFiles  call fzf#vim#gitfiles(<q-args>, {'options': ['--layout=reverse', '--info=inline']}, <bang>0)
 
-
-
 " paste over visual selction, but don't yank removed text
 xnoremap p "_dP
 
+" load current buffer's checkstyle file to quickfix list
+nnoremap <leader>cs :%!grep ERROR \| sed "s/\[ERROR\] //" <CR> :cfile %<CR>
