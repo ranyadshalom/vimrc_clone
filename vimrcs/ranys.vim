@@ -51,10 +51,6 @@ else
   augroup END
 endif
 
-" Gruvbox
-colorscheme palenight
-set background=dark    " Setting dark mode
-
 " Search highlight cleanup
 nnoremap <esc><esc> :nohls<cr>
 
@@ -142,12 +138,16 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-test/vim-test'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'masukomi/vim-markdown-folding'
 call plug#end()
 
 "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
@@ -178,7 +178,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'Telescope git_files'
 " nnoremap <C-f> :FZF<cr>
 "nnoremap <leader>g :Rg!<cr>
-nnoremap <leader>g :Telescope grep_string<cr>
+nnoremap <leader>g :Rg!<cr>
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>p :Telescope find_files<cr>
 nnoremap <leader>b :Buffers<cr>
@@ -196,3 +196,18 @@ nnoremap <leader>cs :%!grep ERROR \| sed "s/\[ERROR\] //" <CR> :cfile %<CR>
 
 " source lua init
 lua require('init')
+" enable treesitter folding
+set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+
+" markdown folding
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+set nocompatible
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+" colors
+colorscheme deus
+set background=dark    " Setting dark mode
+
