@@ -130,6 +130,7 @@ set diffopt+=vertical
 " Build/ship mappings
 nnoremap <leader>bb :AsyncRun brazil-build release<CR>
 nnoremap <leader>cr :AsyncRun cr<cr>
+nnoremap <leader>bws :AsyncRun brazil workspace sync<cr>
 
 " vim-plug auto install
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -145,6 +146,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'vim-test/vim-test'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'puremourning/vimspector'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
 
 "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
@@ -188,3 +191,6 @@ xnoremap p "_dP
 
 " load current buffer's checkstyle file to quickfix list
 nnoremap <leader>cs :%!grep ERROR \| sed "s/\[ERROR\] //" <CR> :cfile %<CR>
+
+" source lua init
+lua require('init')
