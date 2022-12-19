@@ -52,7 +52,7 @@ function! s:gbrowse()
   if empty(sha)
     return s:shrug()
   endif
-  execute 'Gbrowse' sha
+  execute 'GBrowse' sha
 endfunction
 
 function! s:type(visual)
@@ -61,7 +61,7 @@ function! s:type(visual)
     if len(shas) < 2
       return [0, 0]
     endif
-    return ['diff', fugitive#repo().git_command('diff', shas[-1], shas[0])]
+    return ['diff', FugitiveShellCommand(['diff', shas[-1], shas[0]])]
   endif
 
   if exists('b:git_origin')
@@ -106,7 +106,7 @@ function! s:open(visual, ...)
   call s:scratch()
   if type == 'commit'
     execute 'e' escape(target, ' ')
-    nnoremap <silent> <buffer> gb :Gbrowse<cr>
+    nnoremap <silent> <buffer> gb :GBrowse<cr>
   elseif type == 'diff'
     call s:fill(target)
     setf diff
@@ -123,45 +123,6 @@ endfunction
 function! s:dot()
   let sha = gv#sha()
   return empty(sha) ? '' : ':Git  '.sha."\<s-left>\<left>"
-endfunction
-
-function! s:syntax()
-  setf GV
-  syn clear
-  syn match gvInfo    /^[^0-9]*\zs[0-9-]\+\s\+[a-f0-9]\+ / contains=gvDate,gvSha nextgroup=gvMessage,gvMeta
-  syn match gvDate    /\S\+ / contained
-  syn match gvSha     /[a-f0-9]\{6,}/ contained
-  syn match gvMessage /.* \ze(.\{-})$/ contained contains=gvTag,gvGitHub,gvJira nextgroup=gvAuthor
-  syn match gvAuthor  /.*$/ contained
-  syn match gvMeta    /([^)]\+) / contained contains=gvTag nextgroup=gvMessage
-  syn match gvTag     /(tag:[^)]\+)/ contained
-  syn match gvGitHub  /\<#[0-9]\+\>/ contained
-  syn match gvJira    /\<[A-Z]\+-[0-9]\+\>/ contained
-  hi def link gvDate   Number
-  hi def link gvSha    Identifier
-  hi def link gvTag    Constant
-  hi def link gvGitHub Label
-  hi def link gvJira   Label
-  hi def link gvMeta   Conditional
-  hi def link gvAuthor String
-
-  syn match gvAdded     "^\W*\zsA\t.*"
-  syn match gvDeleted   "^\W*\zsD\t.*"
-  hi def link gvAdded    diffAdded
-  hi def link gvDeleted  diffRemoved
-
-  syn match diffAdded   "^+.*"
-  syn match diffRemoved "^-.*"
-  syn match diffLine    "^@.*"
-  syn match diffFile    "^diff\>.*"
-  syn match diffFile    "^+++ .*"
-  syn match diffNewFile "^--- .*"
-  hi def link diffFile    Type
-  hi def link diffNewFile diffFile
-  hi def link diffAdded   Identifier
-  hi def link diffRemoved Special
-  hi def link diffFile    Type
-  hi def link diffLine    Statement
 endfunction
 
 function! s:maps()
@@ -217,13 +178,14 @@ endfunction
 
 function! s:fill(cmd)
   setlocal modifiable
+  %delete _
   silent execute 'read' escape('!'.a:cmd, '%')
   normal! gg"_dd
   setlocal nomodifiable
 endfunction
 
 function! s:tracked(fugitive_repo, file)
-  call system(a:fugitive_repo.git_command('ls-files', '--error-unmatch', a:file))
+  call system(FugitiveShellCommand(['ls-files', '--error-unmatch', a:file]))
   return !v:shell_error
 endfunction
 
@@ -247,7 +209,7 @@ endfunction
 function! s:list(fugitive_repo, log_opts)
   let default_opts = ['--color=never', '--date=short', '--format=%cd %h%d %s (%an)']
   let git_args = ['log'] + default_opts + a:log_opts
-  let git_log_cmd = call(a:fugitive_repo.git_command, git_args, a:fugitive_repo)
+  let git_log_cmd = FugitiveShellCommand(git_args, a:fugitive_repo)
 
   let repo_short_name = fnamemodify(substitute(a:fugitive_repo.dir(), '[\\/]\.git[\\/]\?$', '', ''), ':t')
   let bufname = repo_short_name.' '.join(a:log_opts)
@@ -256,13 +218,13 @@ function! s:list(fugitive_repo, log_opts)
   call s:fill(git_log_cmd)
   setlocal nowrap tabstop=8 cursorline iskeyword+=#
 
-  if !exists(':Gbrowse')
+  if !exists(':GBrowse')
     doautocmd <nomodeline> User Fugitive
   endif
   call s:maps()
-  call s:syntax()
+  setf GV
   redraw
-  echo 'o: open split / O: open tab / gb: Gbrowse / q: quit'
+  echo 'o: open split / O: open tab / gb: GBrowse / q: quit'
 endfunction
 
 function! s:trim(arg)
