@@ -146,7 +146,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'vim-test/vim-test'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'puremourning/vimspector'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
